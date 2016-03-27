@@ -93,7 +93,7 @@ Parsing these files results in:
 
 By supplying a path/filename in the **routes** property of the mens constructor, these routes will be setup in the webserver
 to render the components they are attached to. While you can use the built in templating engine, any valid mithril
-controller will also work. Assuming **routes** has the value "serverRoutes.js":
+controller/view component will also work. Assuming **routes** has the value "serverRoutes.js":
 
 **file: serverRoutes.js**
 ```js
