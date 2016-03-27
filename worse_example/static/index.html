@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+
+<h1>Socket Example</h1>
+<p>
+    <b>Selected Node Ip:</b> <span id="ipAddress"></span>
+</p>
+<script>
+    socket = io.connect();
+
+    socket.on('connect', function() {
+        console.log('Connected');
+    });
+
+    socket.on('loaded', function (data) {
+        console.log('Load Data', data);
+    });
+</script>
+</body>
+</html>
