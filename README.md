@@ -1,4 +1,5 @@
 # MENS Stack
+
 ## Lightweight, Lowly Opinionated, Isomorphic Javascript Framework for Rapid Prototyping Reactive Web Apps
 
 * [Mithril.js](http://mithril.js.org/)
@@ -6,7 +7,7 @@
 * [Node.js](https://nodejs.org/en)
 * [Socket.io](http://socket.io/)
 
-MENS is a complete toolkit for quickly building **fast** isomorphic web applications, such that there is little to no
+MENS is a complete toolkit for quickly building **fast** isomorphic javascript web applications, such that there is little to no
 differentiation between coding on the frontend and the backend. This framework has utilities to handle asynchronous
 data, sharing of session variables for client-side rendering, JSX (or just HTML) templating and event-driven programming
 (via socket.io). MENS takes an exterme KISS approach by simply bridging together a variety of useful, synergistic

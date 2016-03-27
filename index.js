@@ -1,5 +1,5 @@
 /*!
- * The MENS stack for isomorphic web applications (Mithril, Express.js, Node.js, Socket.io)
+ * The MENS stack for isomorphic javascript web applications (Mithril, Express.js, Node.js, Socket.io)
  *
  * @author      Ezra Morse <me@ezramorse.com>
  * @copyright   (c) 2016 Ezra Morse
