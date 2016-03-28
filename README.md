@@ -279,6 +279,7 @@ session information should ever be shared with the client.
 In addition, *m.init* will also add **setTitle(title)** function to the route controllers, for updating the document title
 
 ## Todo
+* meta tags
 * Route caching & invalidation
 * Client-Side modeler data caching and socket.io based invalidation
 * Source code watches for real time updates, with event driven *m.js* refreshes on the client side
