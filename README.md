@@ -10,8 +10,8 @@
 MENS is a complete toolkit for quickly building **fast** isomorphic javascript web applications, such that there is little to no
 differentiation between coding on the frontend and the backend. This framework has utilities to handle asynchronous
 data, sharing of session variables for client-side rendering, JSX (or just HTML) templating and event-driven programming
-(via socket.io). MENS takes an exterme KISS approach by simply bridging together a variety of useful, synergistic
-javascript libraries.
+(via socket.io). MENS takes an extreme KISS approach by simply bridging together a variety of useful, synergistic
+javascript libraries to create an elegant isomorphic javascript server.
 
 **Use Cases:** Social media web applications with interactive communities, multi-user administration tools, mobile
 applications, etc. (anything requiring interactivity, speed, reactive interfaces and high concurrency)
@@ -35,7 +35,7 @@ var server = mens({
 ```
 
 Such that _components_ is a subdirectory of js/jsx files pairs and _routes_ exports a key/value object of routes to
-mithril components.
+mithril javascript components.
 
 ### Arguments
 | Name | Default | Description |
@@ -55,7 +55,7 @@ mithril components.
 | **customJS** | null | Full Path to custom javascript to run after components are defined |
 | **minify** | true | Flag to toggle off uglification of the source js served to the client |
 
-**Note:** Many included JS should contain full paths, because these files will both be *required* and read into memory
+**Note:** Many included javascript files should contain full paths, because these files will both be *required* and read into memory
 for compiling the client source.
 
 ## Templating and Components
@@ -134,8 +134,9 @@ module.exports = {
 };
 ```
 
-While JSX templates can contain **m.component** declarations, all asynchronous data variables should be initialized and passed from the route controller
-into the children components.
+While JSX templates can contain **m.component** declarations, all asynchronous data variables should be initialized and
+passed from the route controller into the children components. This allows the route controller to properly
+control its overall redraw strategy
 
 ## Asynchronous Data
 
@@ -143,8 +144,8 @@ into the children components.
 ### m.fetch(ctrl, data, callback, skipForRenderFlag)
 
 Components can render asynchronous data on both the server and the client by using **m.fetch** in the route controller
-after **m.init** has been called. A single fetched "model" should represent all data needed to render a specific route,
-which is ideal for noSQL databases such as mongoDB.
+after **m.init** has been called, with no significant isomorphic considerations. A single fetched "model" should
+represent all data needed to render a specific route, which is ideal for noSQL databases such as mongoDB.
 
 ```js
 module.exports = function (params) {
@@ -287,9 +288,10 @@ In addition, *m.init* will also add **setTitle(title)** function to the route co
 
 ## Questions & Contributions
 
-Please fork and contribute, and send feedback & examples to [me@ezramorse.com](mailto:me@ezramorse.com).
+Please fork and contribute, and send feedback & examples to [me@ezramorse.com](mailto:me@ezramorse.com) of any type
+of isomorphic web application built with the mens stack.
 
 ## Credits
 
-Special thanks for Stephan Hoyer for some isomorphic examples and utilities, as well as Leo Horie for mithril
-(of course!). Many thanks to the node.js community.
+Special thanks for Stephan Hoyer for some mithril isomorphic javascript examples and utilities, as well as Leo Horie
+for mithril (of course!). Many thanks to the node.js community!
