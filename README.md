@@ -277,7 +277,8 @@ session information should ever be shared with the client.
 | **m.poll** | Creates a bidirectional poll over sockets between the client and server (client only) |
 | **m.fetch** | Fetches data from the modeler using *m.poll* |
 
-In addition, *m.init* will also add **setTitle(title)** function to the route controllers, for updating the document title
+In addition, *m.init* will also add **setTitle(title)** function to the route controllers, for updating the document
+title. This function is not bound to the mithril object, because mithril is used globally on the server side.
 
 ## Todo
 * meta tags
