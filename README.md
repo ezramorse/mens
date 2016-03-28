@@ -11,10 +11,10 @@ MENS is a complete toolkit for quickly building **fast** isomorphic javascript w
 differentiation between coding on the frontend and the backend. This framework has utilities to handle asynchronous
 data, sharing of session variables for client-side rendering, JSX (or just HTML) templating and event-driven programming
 (via socket.io). MENS takes an extreme KISS approach by simply bridging together a variety of useful, synergistic
-javascript libraries to create an elegant isomorphic javascript server.
+javascript libraries to create an elegant isomorphic mithril javascript server.
 
 **Use Cases:** Social media web applications with interactive communities, multi-user administration tools, mobile
-applications, etc. (anything requiring interactivity, speed, reactive interfaces and high concurrency)
+applications, etc. (anything requiring interactivity, speed, reactive interfaces and high concurrency).
 
 ## Installation
 ```
@@ -35,7 +35,7 @@ var server = mens({
 ```
 
 Such that _components_ is a subdirectory of js/jsx files pairs and _routes_ exports a key/value object of routes to
-mithril javascript components.
+isomorphic mithril javascript components.
 
 ### Arguments
 | Name | Default | Description |
@@ -290,7 +290,7 @@ title. This function is not bound to the mithril object, because mithril is used
 ## Questions & Contributions
 
 Please fork and contribute, and send feedback & examples to [me@ezramorse.com](mailto:me@ezramorse.com) of any type
-of isomorphic web application built with the mens stack.
+of isomorphic mithril web application built with the mens stack.
 
 ## Credits
 
