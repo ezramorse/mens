@@ -10,6 +10,7 @@ var
 
 var server = mens({
 	logLevel: 3,
+	host: 'localhost',
 	port: 80,
 	components: __dirname+path.sep+'..'+path.sep+'example'+path.sep+'components',
 	routes: __dirname+path.sep+'..'+path.sep+'example'+path.sep+'serverRoutes.js',

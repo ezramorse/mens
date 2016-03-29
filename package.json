@@ -33,6 +33,7 @@
     "moment-timezone": "^0.4.0",
     "msx": "^0.4.1",
     "socket.io": "^1.3.6",
+    "socket.io-client": "^1.4.5",
     "uglify-js": "^2.6.2",
     "wolfy87-eventemitter": "^4.2.11"
   },
