@@ -29,15 +29,15 @@ var
 	uglify      = require("uglify-js"),
 	mSrc        = fs.readFileSync(require.resolve('mithril'), 'utf8'),
 	eSrc        = fs.readFileSync(require.resolve('wolfy87-eventemitter'), 'utf8'),
-	iSrc        = fs.readFileSync(require.resolve('socket.io/node_modules/socket.io-client/socket.io.js'), 'utf-8'),
+	iSrc        = fs.readFileSync(__dirname+path.sep+'node_modules'+path.sep+'socket.io'+path.sep+'node_modules'+path.sep+'socket.io-client'+path.sep+'socket.io.js', 'utf-8'),
 	dSrc        = fs.readFileSync(require.resolve('domready'), 'utf-8'),
 	render      = require('mithril-node-render'),
-	createSession = require('mens/lib/serverSession.js');
+	createSession = require(__dirname+'/lib/serverSession.js');
 
 /**
- *  Initialize Mithril Server - modified require for travis tests
+ *  Initialize Mithril Server - (funny path for travis tests)
  */
-require(require.resolve('mens/lib/initServer.js'))();
+require(__dirname+'/lib/initServer.js')();
 
 
 /**
