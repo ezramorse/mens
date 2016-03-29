@@ -1,8 +1,6 @@
 language: node_js
-sudo: required
-before_install:
-  - 'npm install mens'
 node_js:
+  - "node"
   - "5"
   - "5.1"
   - "4"

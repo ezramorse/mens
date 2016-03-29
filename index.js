@@ -34,11 +34,10 @@ var
 	render      = require('mithril-node-render'),
 	createSession = require('mens/lib/serverSession.js');
 
-
 /**
- *  Initialize Mithril Server
+ *  Initialize Mithril Server - modified require for travis tests
  */
-require('mens/lib/initServer.js')();
+require(require.resolve('mens/lib/initServer.js'))();
 
 
 /**
