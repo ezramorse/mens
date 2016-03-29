@@ -23,6 +23,10 @@ applications, etc. (anything requiring interactivity, speed, reactive interfaces
 npm install mens
 node node_modules/mens/example/server.js
 ```
+Or for an more dynamic example (loud):
+```
+node node_modules/mens/worse_example/server.js
+```
 
 ## Basic Usage
 ```js
@@ -88,9 +92,9 @@ module.exports = function (params) {
 
 Parsing these files results in:
 
-* m.views.helloWorld
-* m.controllers.helloWorld
-* m.components.helloWorld
+* **m.views.helloWorld**
+* **m.controllers.helloWorld**
+* **m.components.helloWorld** == {controller: m.controllers.helloWorld, view: m.views.helloWorld}
 
 ## Routes
 
