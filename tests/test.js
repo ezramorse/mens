@@ -11,7 +11,7 @@ var
 var server = mens({
 	logLevel: 3,
 	host: 'localhost',
-	port: 80,
+	port: 3000,
 	components: __dirname+path.sep+'..'+path.sep+'example'+path.sep+'components',
 	routes: __dirname+path.sep+'..'+path.sep+'example'+path.sep+'serverRoutes.js',
 
@@ -38,7 +38,7 @@ var server = mens({
 });
 
 
-var base_url = "http://localhost:80/"
+var base_url = "http://localhost:3000/"
 
 
 
