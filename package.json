@@ -1,6 +1,6 @@
 {
   "name": "mens",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Lightweight, Lowly Opinionated, Isomorphic Javascript Framework for Rapid Prototyping Functional Web Apps (Mithril, Express.js, Node.js, Socket.io)",
   "main": "index.js",
   "scripts": {
