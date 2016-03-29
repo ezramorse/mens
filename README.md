@@ -18,9 +18,10 @@ javascript libraries to create an elegant isomorphic mithril javascript server.
 **Use Cases:** Social media web applications with interactive communities, multi-user administration tools, mobile
 applications, etc. (anything requiring interactivity, speed, reactive interfaces and high concurrency).
 
-## Installation
+## Installation & Example
 ```
 npm install mens
+node node_modules/mens/example/server.js
 ```
 
 ## Basic Usage
@@ -31,8 +32,8 @@ var
 
 var server = mens({
 	port: 80,
-	components: process.cwd()+path.sep+'components',
-	routes: process.cwd()+path.sep+'serverRoutes.js'
+	components: __dirname+path.sep+'components',
+	routes: __dirname+path.sep+'serverRoutes.js'
 });
 ```
 

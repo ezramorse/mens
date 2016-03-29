@@ -32,13 +32,13 @@ var
 	iSrc        = fs.readFileSync(require.resolve('socket.io/node_modules/socket.io-client/socket.io.js'), 'utf-8'),
 	dSrc        = fs.readFileSync(require.resolve('domready'), 'utf-8'),
 	render      = require('mithril-node-render'),
-	createSession = require(__dirname+path.sep+'lib'+path.sep+'serverSession.js');
+	createSession = require('mens/lib/serverSession.js');
 
 
 /**
  *  Initialize Mithril Server
  */
-require(__dirname+path.sep+'lib'+path.sep+'initServer.js')();
+require('mens/lib/initServer.js')();
 
 
 /**

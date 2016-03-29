@@ -8,7 +8,7 @@
 var path = require('path'),
     crypto = require('crypto'),
     gen = require('lorem-ipsum'),
-    mens = require('../index.js');
+    mens = require('mens');
 
 
 Math.seed = function(s) {
@@ -88,14 +88,14 @@ var server = mens({
         tz: 'America/Los_Angeles',
         port: 80,
         host: '0.0.0.0',
-        static: process.cwd()+path.sep+'static',
+        static: __dirname+path.sep+'static',
         sessionStore: null,
         sessionSecret: 'kneeboard fat',
         sessionName: 'sid',
         modeler: modeler,
         socketHandler: handler,
-        components: process.cwd()+path.sep+'components',
-		customJS: process.cwd()+path.sep+'custom.js',
-        routes: process.cwd()+path.sep+'serverRoutes.js',
-        template: process.cwd()+path.sep+'static'+path.sep+'wrapper.tpl'
+        components: __dirname+path.sep+'components',
+		customJS: __dirname+path.sep+'custom.js',
+        routes: __dirname+path.sep+'serverRoutes.js',
+        template: __dirname+path.sep+'static'+path.sep+'wrapper.tpl'
 });

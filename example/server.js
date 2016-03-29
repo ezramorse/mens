@@ -1,12 +1,12 @@
 var
 	path = require('path'),
-	mens = require('../index.js');
+	mens = require('mens');
 
 var server = mens({
         logLevel: 3,
         port: 80,
-        components: process.cwd()+path.sep+'components',
-        routes: process.cwd()+path.sep+'serverRoutes.js',
+        components: __dirname+path.sep+'components',
+        routes: __dirname+path.sep+'serverRoutes.js',
 
 		// This is a fake "modeler" to stand in for a mongoDB library
 		modeler: function (data, session, callback) {
