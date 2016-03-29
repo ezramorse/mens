@@ -1,5 +1,5 @@
 var
-	example = require("mens/example/server.js"),
+	example = require(__dirname+"/../example/server.js"),
 	request = require("request"),
 	mocha = require("mocha"),
 	assert = require("assert");
