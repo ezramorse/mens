@@ -4,8 +4,10 @@
  * @author      Ezra Morse <me@ezramorse.com>
  * @copyright   (c) 2016 Ezra Morse
  * @email       me@ezramorse.com
- * @version     0.1.0
+ * @version     0.1.3
  * @license     MIT
+ * @dependencies camelcase chalk compression domready express express-session mithril mithril-node-render moment-timezone msx socket.io socket.io-client uglify-js wolfy87-eventemitter
+ * @dev-dependencies assert lorem-ipsum mocha request
  */
 
 'use strict';

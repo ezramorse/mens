@@ -1,6 +1,6 @@
 # MENS Stack
 
-[![Join the chat at https://gitter.im/ezramorse/mens](https://badges.gitter.im/ezramorse/mens.svg)](https://gitter.im/ezramorse/mens?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![npm version](https://badge.fury.io/js/mens.svg)](https://badge.fury.io/js/mens)
+[![Join the chat at https://gitter.im/ezramorse/mens](https://badges.gitter.im/ezramorse/mens.svg)](https://gitter.im/ezramorse/mens?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/ezramorse/mens.svg?branch=master)](https://travis-ci.org/ezramorse/mens) [![npm version](https://img.shields.io/npm/v/mens.svg)](https://www.npmjs.com/package/mens) [![npm version](https://img.shields.io/npm/dm/mens.svg)](https://www.npmjs.com/package/mens) [![npm version](https://david-dm.org/ezramorse/mens.svg)](https://www.npmjs.com/package/mens)
 
 ## Lightweight, Lowly Opinionated, Isomorphic Javascript Framework for Rapid Prototyping Reactive Web Apps
 

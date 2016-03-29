@@ -22,20 +22,20 @@
   "author": "Ezra Morse",
   "license": "MIT",
   "dependencies": {
-    "camelcase": "^1.2.1",
-    "chalk": "^1.1.0",
+    "camelcase": "^2.1.1",
+    "chalk": "^1.1.3",
     "compression": "^1.6.1",
     "domready": "^1.0.8",
     "express": "^4.13.4",
-    "express-session": "^1.11.3",
-    "mithril": "^0.2.0",
+    "express-session": "^1.13.0",
+    "mithril": "^0.2.3",
     "mithril-node-render": "^0.4.2",
-    "moment-timezone": "^0.4.0",
+    "moment-timezone": "^0.5.3",
     "msx": "^0.4.1",
-    "socket.io": "^1.3.6",
+    "socket.io": "^1.4.5",
     "socket.io-client": "^1.4.5",
     "uglify-js": "^2.6.2",
-    "wolfy87-eventemitter": "^4.2.11"
+    "wolfy87-eventemitter": "^4.3.0"
   },
   "devDependencies": {
     "assert": "^1.3.0",
