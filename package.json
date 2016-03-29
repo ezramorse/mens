@@ -1,7 +1,7 @@
 {
   "name": "mens",
   "version": "0.1.4",
-  "description": "Lightweight, Lowly Opinionated, Isomorphic Javascript Framework for Rapid Prototyping Functional Web Apps (Mithril, Express.js, Node.js, Socket.io)",
+  "description": "Isomorphic Mithril Javascript Framework (w/ Websockets)",
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec ./tests/test.js"
