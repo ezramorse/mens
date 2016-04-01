@@ -14,8 +14,20 @@ var flags = {
 	section: m.prop("contentHome")
 };
 
+var meta = [
+	{name: "description", content: "Isomorphic Mithril Javascript Framework"},
+	{name: "keywords", content: "isomorpic, mithril, javascript, framework"}
+];
+
+var links = [
+	{rel: "icon", type: "image/png", href: "https://cdn2.iconfinder.com/data/icons/emoticons-17/24/emoticons-04-128.png" }
+];
+
 module.exports = {
+	title: 'Mens Stack',
 	flags: flags,
+	meta: meta,
+	links: links,
 	routes: {
 		// Let's just route everything to the same basic wrapper view, and use the controller to set a global flag.
 		'/': {

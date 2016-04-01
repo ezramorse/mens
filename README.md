@@ -23,7 +23,7 @@ applications, etc. (anything requiring interactivity, speed, reactive interfaces
 npm install mens
 node node_modules/mens/example/server.js
 ```
-Or for an more dynamic example (loud):
+Or for a more dynamic example (loud):
 ```
 node node_modules/mens/worse_example/server.js
 ```

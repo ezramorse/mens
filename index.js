@@ -3,10 +3,8 @@
  *
  * @author      Ezra Morse <me@ezramorse.com>
  * @copyright   (c) 2016 Ezra Morse
- * @email       me@ezramorse.com
- * @version     0.1.3
  * @license     MIT
- * @dependencies camelcase chalk compression domready express express-session mithril mithril-node-render moment-timezone msx socket.io socket.io-client uglify-js wolfy87-eventemitter
+ * @dependencies camelcase chalk compression deepcopy domready express express-session mithril mithril-node-render moment-timezone msx socket.io socket.io-client uglify-js wolfy87-eventemitter
  * @dev-dependencies assert lorem-ipsum mocha request
  */
 
@@ -29,12 +27,13 @@ var
 	moment      = require('moment-timezone'),
 	camelCase   = require('camelcase'),
 	uglify      = require("uglify-js"),
+	render      = require('mithril-node-render'),
+	createSession = require(__dirname+'/lib/serverSession.js'),
+	createHelper = require(__dirname+'/lib/serverHelper.js'),
 	mSrc        = fs.readFileSync(require.resolve('mithril'), 'utf8'),
 	eSrc        = fs.readFileSync(require.resolve('wolfy87-eventemitter'), 'utf8'),
 	iSrc        = fs.readFileSync(require.resolve('socket.io-client/socket.io.js'), 'utf-8'),
-	dSrc        = fs.readFileSync(require.resolve('domready'), 'utf-8'),
-	render      = require('mithril-node-render'),
-	createSession = require(__dirname+'/lib/serverSession.js');
+	dSrc        = fs.readFileSync(require.resolve('domready'), 'utf-8');
 
 
 /**
@@ -68,8 +67,10 @@ var
 	logLevel    = 3,
 	tz          = 'America/Los_Angeles',
 	bodyTag     = '<!--MENS-->',
-	sessionTag     = '<!--SESSION-->',
+	sessionTag  = '<!--SESSION-->',
 	titleTag    = '<!--TITLE-->',
+	metaTag     = '<!--META-->',
+	linkTag     = '<!--LINK-->',
 	tab         = '\t',
 	tpl         = '',
 	rSrc        = '',
@@ -126,7 +127,7 @@ function mens(config) {
 	// Create Client Side Source Code For Initializing MENS stack
 	rSrc = '(function(w) { var module = {};' + fs.readFileSync(__dirname + path.sep + 'lib' + path.sep + 'clientSession.js', 'utf8') + ';\nw.createSession=module.exports;})(window);\n' +
 		'(function() { var module = {};' + fs.readFileSync(__dirname + path.sep + 'lib' + path.sep + 'initClient.js', 'utf8') + ';\nmodule.exports();})();\n' +
-		'(function(w) { var module = {};' + fs.readFileSync(config.routes, 'utf8') + ';\nvar routes = module.exports; if (module.exports.routes) routes = routes.routes; if (module.exports.flags) window.flags = m.flags = module.exports.flags; m.route(document.getElementById("mens-content"), "/", routes);})(window);\n';
+		'(function(w) { var module = {};' + fs.readFileSync(config.routes, 'utf8') + ';\nvar routes = module.exports; if (module.exports.routes) routes = routes.routes; if (module.exports.flags) window.flags = m.flags = module.exports.flags || {}; window.defaultTitle = module.exports.title || "";  window.defaultMeta = module.exports.meta || []; window.defaultLinks = module.exports.links || [];  m.route(document.getElementById("mens-content"), "/", routes);})(window);\n';
 
 	// Setup HTTP Server
 	this.app = express();
@@ -154,25 +155,33 @@ function mens(config) {
 	// Load Template
 	tpl = fs.readFileSync(config.template ? config.template : __dirname + path.sep + 'wrapper.tpl', 'utf8');
 
-	// Initialize Routes
-	var routesObj = {}, routes = {};
-	if (config.routes) {
-		routesObj = routes = require(config.routes);
-		if (routesObj.routes)
-			routes = routesObj.routes;
+	// Initialize Routes & Handle backwards compatibility
+	var settings = {}, routes = {};
+	config.settings = config.settings || config.routes;
+	if (config.settings) {
+		routes = require(config.settings);
+
+		if (!routes.routes)
+			settings.routes = routes;
+		else {
+			settings = routes;
+			routes = settings.routes;
+		}
+
 	}
+
+	// Setup Default Page Variables
+	settings.title = settings.title || '';
+	settings.meta  = settings.meta || {};
+	settings.links = settings.links || {};
+	settings.flags = m.flags = settings.flags || {};
 
 	for (var route in routes)
 		(function (route, app) {
 			app.get(route, function (req, res) {
 
-				// Title of the current page
-				var title = '';
-
-				// Pass session into controller
-				req.params.sessionWrapper = createSession({session: req.session, sessionID: req.sessionID});
-				req.params.mensFlags = m.flags = routesObj.flags;
-				req.params.setTitle = function (t) { title=t; };
+				// Create a Helper For the Controller
+				var helper = req.params._helper = createHelper({req: req, settings: settings});
 
 				// Create controller instance
 				var ctrl = routes[route].controller(req.params);
@@ -180,14 +189,9 @@ function mens(config) {
 				// Define response renderer
 				var response = function () {
 
-					var s = {}, d = new Date().getTime(), sd = req.params.sessionWrapper.get();
-
-					for (var k in sd)
-						s[k] = {time: d, value: sd[k]}
-
 					res.setHeader('Content-Type', 'text/html');
 					res.setHeader('Cache-Control', 'no-cache');
-					res.write(tpl.replace(sessionTag, JSON.stringify(s)).replace(bodyTag, render(routes[route].view(ctrl))).replace(titleTag, title));
+					res.write(tpl.replace(bodyTag, render(routes[route].view(ctrl))).replace(sessionTag, helper.sessionToString()).replace(titleTag, helper.getTitle()).replace(metaTag, helper.metaToString()).replace(linkTag, helper.linksToString()));
 					res.flush();
 					res.end();
 				};
@@ -226,12 +230,10 @@ function mens(config) {
 		this.app.use(express.static(config.static));
 
 
-	// Update mithril source client side for diff drawing and passing session/flags into root controller
+	// Update mithril source client side for diff drawing and passing params into root controller
 	mSrc = mSrc.replace('var controller = new (component.controller || noop)()',
 		'm.redraw.strategy("diff");' +
-		'var p= m.route.param();' +
-		'p.session = window.session; p.flags = window.flags; p.setTitle=window.setTitle;' +
-		'var controller = new (component.controller || noop)(p)');
+		'var controller = new (component.controller || noop)(m.route.param())');
 
 	// Setup m.js route
 	if (!config.hasOwnProperty('minify') || config.minify) {
