@@ -6,7 +6,7 @@ var server = mens({
         logLevel: 3,
         port: 80,
         components: __dirname+path.sep+'components',
-        routes: __dirname+path.sep+'serverRoutes.js',
+        settings: __dirname+path.sep+'sharedSettings.js',
 
 		// This is a fake "modeler" to stand in for a mongoDB library
 		modeler: function (data, session, callback) {

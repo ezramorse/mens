@@ -24,7 +24,7 @@ var links = [
 ];
 
 module.exports = {
-	title: 'Mens Stack',
+	title: 'The Isomorphic MENS Stack',
 	flags: flags,
 	meta: meta,
 	links: links,
@@ -33,16 +33,7 @@ module.exports = {
 		'/': {
 			controller: function (params) {
 				m.init(this, params);
-				this.setTitle('The Isomorphic MENS Stack');
 				flags.section('contentHome');
-				return this;
-			}, view: m.views.page2column
-		},
-		'/about/': {
-			controller: function (params) {
-				m.init(this, params);
-				this.setTitle('About The MENS Stack');
-				flags.section('contentAbout');
 				return this;
 			}, view: m.views.page2column
 		},
@@ -50,6 +41,8 @@ module.exports = {
 			controller: function (params) {
 				m.init(this, params);
 				this.setTitle('Templating and Components');
+				this.setMeta([{description: "Templating & Components"},{keywords: "templating, components, mithril, isomorphic"}]);
+
 				flags.section('contentComponents');
 				return this;
 			}, view: m.views.page2column
@@ -58,6 +51,8 @@ module.exports = {
 			controller: function (params) {
 				m.init(this, params);
 				this.setTitle('Using Events');
+				this.setMeta([{description: "Event & Communications With MENS"},{keywords: "socket.io, mens, events, websockets"}]);
+
 				flags.section('contentEvents');
 				return this;
 			}, view: m.views.page2column
@@ -66,6 +61,8 @@ module.exports = {
 			controller: function (params) {
 				m.init(this, params);
 				this.setTitle('The Session Wrapper');
+				this.setMeta([{description: "MENS Stack Sessions"},{keywords: "session, wrapper, mens, mithril"}]);
+
 				flags.section('contentSession');
 				return this;
 			}, view: m.views.page2column
@@ -74,6 +71,8 @@ module.exports = {
 			controller: function (params) {
 				m.init(this, params)
 				this.setTitle('Asynchronous Data and Isomorphism');
+				this.setMeta([{description: "Asynchronous Data and Isomorphism"},{keywords: "asynchronous data, isomorphism, mens, mithril"}]);
+
 				flags.section('contentData');
 
 				this.data1 = m.prop(false);
@@ -82,14 +81,6 @@ module.exports = {
 				m.fetch(this, {name:'fast_data'});
 				m.fetch(this, {name:'slow_data'}, false, true);
 
-				return this;
-			}, view: m.views.page2column
-		},
-		'/faq/': {
-			controller: function (params) {
-				m.init(this, params);
-				this.setTitle('Questions and Answers');
-				flags.section('contentFaq');
 				return this;
 			}, view: m.views.page2column
 		}

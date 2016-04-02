@@ -37,7 +37,7 @@ var
 var server = mens({
 	port: 80,
 	components: __dirname+path.sep+'components',
-	routes: __dirname+path.sep+'serverRoutes.js'
+	routes: __dirname+path.sep+'routes.js'
 });
 ```
 
@@ -57,8 +57,8 @@ isomorphic mithril javascript components.
 | **modeler** | null | **fn(data, session, callback)** to lookup a record matching _data_, which is returned to the client using **callback(result)**|
 | **socketHandler** | null | **fn(socket.io client, session)** for binding custom events when a new socket.io client connects |
 | **components** | null | Path to a components directory |
-| **routes** | null | Full Path to a routes definition file |
-| **template** | null | Full Path to the main wrapper template, containing an HTML wrapper with <!--TITLE-->, <!--SESSION--> and <!--MENS--> tags. The <!--MENS--> tag should be within an element of id "**mens-content**" |
+| **settings** | null | Full Path to a routes definition file (key/values of routes to components) or a shared settings file exporting an object **{routes, title, meta, links}**  |
+| **template** | null | Full Path to the main wrapper template, containing an HTML wrapper with <!--TITLE-->, <!--META-->, <!--LINK-->, <!--SESSION--> and <!--MENS--> tags. The <!--MENS--> tag should be within an element of id "**mens-content**" |
 | **customJS** | null | Full Path to custom javascript to run after components are defined |
 | **minify** | true | Flag to toggle off uglification of the source js served to the client |
 
@@ -98,11 +98,11 @@ Parsing these files results in:
 
 ## Routes
 
-By supplying a path/filename in the **routes** property of the mens constructor, these routes will be setup in the webserver
+By supplying a path/filename in the **settings** property of the mens constructor, these routes will be setup in the webserver
 to render the components they are attached to. While you can use the built in templating engine, any valid mithril
-controller/view component will also work. Assuming **routes** has the value "serverRoutes.js":
+controller/view component will also work. Assuming **settings** has the value "routes.js":
 
-**file: serverRoutes.js**
+**file: routes.js**
 ```js
 module.exports = {
 	'/' : m.components.helloWorld,
@@ -119,7 +119,7 @@ module.exports = {
 }
 ```
 
-The routes file can also declare global shared flags (accessible to each route controller and via *m.flags*) by using
+The routes file can also declare global shared flags (accessible to each route controller and via *m.flags*), default title tag, default meta tags, and default link tags by using
 the following format:
 ```js
 var flags = { world: m.prop('world!')};
@@ -137,7 +137,9 @@ module.exports = {
 			view: m.views.helloWorld
 		}
 	},
-	'flags' : flags
+	'flags' : flags,
+	'meta'  : [{name: "foo", content: "bar"}],
+	'links' : [{name: "foo", content: "bar"}]
 };
 ```
 
@@ -280,18 +282,25 @@ session information should ever be shared with the client.
 | **m.web** | Global check flag for non-isomorphic compliant code |
 | **m.firstDraw** | Internal flag for setting redraw strategy on initial route mounting with required async data (client only) |
 | **m.emitter** | Returns a new event-emitter object |
-| **m.init** | Allows controllers isomorphic access to sessions and global flags. Reserved for future use |
+| **m.init** | Allows controllers isomorphic access to page utilities, sessions and global flags. |
 | **m.poll** | Creates a bidirectional poll over sockets between the client and server (client only) |
 | **m.fetch** | Fetches data from the modeler using *m.poll* |
 
-In addition, *m.init* will also add **setTitle(title)** function to the route controllers, for updating the document
-title. This function is not bound to the mithril object, because mithril is used globally on the server side.
+## m.init(ctrl, params) Controller Functions
+
+Running **m.init** binds the following properties to the route controllers
+
+| Property | Description |
+| :--------------- | :-------------------------------------------------------- |
+| **session** | mensSession wrapper |
+| **flags** | Global flags, which should never be mutated outside of a gesture |
+| **setTitle(String)** | Updates the document's title |
+| **setMeta(Array)** | Updates the route's <meta> tags. Accepts an array of objects corresponding to the meta tag's properties |
+| **setLinks(Array)** | Updates the route's <link> tags |
 
 ## Todo
-* meta tags
-* Route caching & invalidation
 * Client-Side modeler data caching and socket.io based invalidation
-* Source code watches for real time updates, with event driven *m.js* refreshes on the client side
+* Event driven *m.js* refreshes on the client side
 * Solve initial route mounting without redundant modeler polling (or sending data with the page)
 
 ## Questions & Contributions
