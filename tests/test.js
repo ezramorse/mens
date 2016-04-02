@@ -13,7 +13,7 @@ var server = mens({
 	host: 'localhost',
 	port: 3000,
 	components: __dirname+path.sep+'..'+path.sep+'example'+path.sep+'components',
-	routes: __dirname+path.sep+'..'+path.sep+'example'+path.sep+'serverRoutes.js',
+	settings: __dirname+path.sep+'..'+path.sep+'example'+path.sep+'sharedSettings.js',
 
 	// This is a fake "modeler" to stand in for a mongoDB library
 	modeler: function (data, session, callback) {
