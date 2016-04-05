@@ -58,7 +58,7 @@ isomorphic mithril javascript components.
 | **socketHandler** | null | **fn(socket.io client, session)** for binding custom events when a new socket.io client connects |
 | **components** | null | Path to a components directory |
 | **settings** | null | Full Path to a routes definition file (key/values of routes to components) or a shared settings file exporting an object **{routes, title, meta, links}**  |
-| **template** | null | Full Path to the main wrapper template, containing an HTML wrapper with <!--TITLE-->, <!--META-->, <!--LINK-->, <!--SESSION--> and <!--MENS--> tags. The <!--MENS--> tag should be within an element of id "**mens-content**" |
+| **template** | null | Full Path to the main wrapper template, containing an HTML wrapper with &lt;!--TITLE--&gt;, &lt;!--META--&gt;, &lt;!--LINK--&gt;, &lt;!--SESSION--&gt; and &lt;!--MENS--&gt; tags. The &lt;!--MENS--&rt; tag should be within an element of id "**mens-content**" |
 | **customJS** | null | Full Path to custom javascript to run after components are defined |
 | **minify** | true | Flag to toggle off uglification of the source js served to the client |
 
@@ -178,7 +178,7 @@ developers must account for templating missing/pending data with appropriate loa
 
 #### Data Caching
 
-**m.fetch** Will cache the data describe by the second argument for a default of 60 seconds. This value can be overriden
+**m.fetch** Will cache the data described by the second argument for a default of 60 seconds. This value can be overriden
 by exporting a **dataTtl** element in the *settings* file. In the earlier example, data can be invalidated from the
 server by emitting an **invalidateData** event to any client, with the object *{key: {id: 1}}*.
 
@@ -309,6 +309,7 @@ Running **m.init** binds the following properties to the route controllers
 ## Todo
 * Error Pages
 * Event driven *m.js* refreshes on the client side
+* Create practical examples (login/users/acl)
 * Solve initial route mounting without redundant modeler polling (or sending data with the page)
 
 ## Questions & Contributions
