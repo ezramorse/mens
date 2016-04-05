@@ -28,6 +28,7 @@ module.exports = {
 	flags: flags,
 	meta: meta,
 	links: links,
+	dataTtl: 60,
 	routes: {
 		// Let's just route everything to the same basic wrapper view, and use the controller to set a global flag.
 		'/': {

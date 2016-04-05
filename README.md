@@ -175,6 +175,14 @@ On the server, this controller will not render the item until all required *m.fe
 if the page is rendered isomorphically, the redraw strategy will be "diff" and the page will render instantly (so
 developers must account for templating missing/pending data with appropriate loading icons and language).
 
+
+#### Data Caching
+
+**m.fetch** Will cache the data describe by the second argument for a default of 60 seconds. This value can be overriden
+by exporting a **dataTtl** element in the *settings* file. In the earlier example, data can be invalidated from the
+server by emitting an **invalidateData** event to any client, with the object *{key: {id: 1}}*.
+
+
 ### Modelers
 
 The **modeler** property passed into the MENS constructor requires *fn(data, session, callback)*, such that *data* is a description
@@ -295,11 +303,11 @@ Running **m.init** binds the following properties to the route controllers
 | **session** | mensSession wrapper |
 | **flags** | Global flags, which should never be mutated outside of a gesture |
 | **setTitle(String)** | Updates the document's title |
-| **setMeta(Array)** | Updates the route's <meta> tags. Accepts an array of objects corresponding to the meta tag's properties |
-| **setLinks(Array)** | Updates the route's <link> tags |
+| **setMeta(Array)** | Updates the route's **meta** tags. Accepts an array of objects corresponding to the meta tag's properties |
+| **setLinks(Array)** | Updates the route's **link** tags Accepts an array of objects corresponding to the link tag's properties |
 
 ## Todo
-* Client-Side modeler data caching and socket.io based invalidation
+* Error Pages
 * Event driven *m.js* refreshes on the client side
 * Solve initial route mounting without redundant modeler polling (or sending data with the page)
 

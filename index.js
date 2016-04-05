@@ -127,7 +127,7 @@ function mens(config) {
 	// Create Client Side Source Code For Initializing MENS stack
 	rSrc = '(function(w) { var module = {};' + fs.readFileSync(__dirname + path.sep + 'lib' + path.sep + 'clientSession.js', 'utf8') + ';\nw.createSession=module.exports;})(window);\n' +
 		'(function() { var module = {};' + fs.readFileSync(__dirname + path.sep + 'lib' + path.sep + 'initClient.js', 'utf8') + ';\nmodule.exports();})();\n' +
-		'(function(w) { var module = {};' + fs.readFileSync(config.routes || config.settings, 'utf8') + ';\nvar routes = module.exports; if (module.exports.routes) routes = routes.routes; if (module.exports.flags) window.flags = m.flags = module.exports.flags || {}; window.defaultTitle = module.exports.title || "";  window.defaultMeta = module.exports.meta || []; window.defaultLinks = module.exports.links || [];  m.route(document.getElementById("mens-content"), "/", routes);})(window);\n';
+		'(function(w) { var module = {};' + fs.readFileSync(config.routes || config.settings, 'utf8') + ';\nvar routes = module.exports; if (module.exports.routes) routes = routes.routes; if (module.exports.flags) window.flags = m.flags = module.exports.flags || {}; window.defaultTitle = module.exports.title || "";  window.defaultMeta = module.exports.meta || []; window.dataTtl = (module.exports.dataTtl || 60)*1000; window.defaultLinks = module.exports.links || [];  m.route(document.getElementById("mens-content"), "/", routes);})(window);\n';
 
 	// Setup HTTP Server
 	this.app = express();
